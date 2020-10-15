@@ -35,15 +35,20 @@
 
     <div v-if="ifElse" :h1="msg">lalal</div>
     <div v-else>wowowo</div>
+    <HelloWorld :obj="obj"></HelloWorld>
   </main>
 </template>
 
 <script>
+import { HelloWorld } from "@/components";
 import { debounce, throttle } from "@/utils/untils";
 import { mapActions, mapMutations } from "vuex";
 import { test } from "@/api/one";
 export default {
   name: "one",
+  components: {
+    HelloWorld,
+  },
   data() {
     return {
       msg: "hello world",
@@ -58,14 +63,13 @@ export default {
   watch: {
     obj: {
       handler() {
-        console.log("ok");
+        console.log("obj");
       },
-      immediate: true,
       deep: true,
     },
   },
   mounted() {
-    test()
+    test();
     // //数组扁平化
     // let arr = [1, [1], 2, [2, [3]], [2, [4, [5]]]];
     // let arr2 = arr.flat();
